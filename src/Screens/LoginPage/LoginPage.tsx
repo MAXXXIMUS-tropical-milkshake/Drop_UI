@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styles from './LoginPage.styles';
+import styles from './LoginPageStyles';
 import {
   View,
   Image,
   Text,
 } from 'react-native';
-import InputForm from '../../Components/TextInput';
-import LoginButton from '../../Components/LoginButton';
+import InputForm from '../../Components/InputForm/InputForm';
+import LoginButton from '../../Components/LoginButton/LoginButton';
 
 function LoginPage(): React.JSX.Element {
   const [form, setForm] = useState({
@@ -36,3 +36,4 @@ function LoginPage(): React.JSX.Element {
 }
 
 export default LoginPage;
+

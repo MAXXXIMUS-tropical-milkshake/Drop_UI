@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
-import styles from './styles';
+import styles from './LoginButtonStyles';
 
 type LoginProps = {
   email: string,
@@ -12,8 +12,7 @@ function LoginButton(props: LoginProps): React.JSX.Element {
     <View style={styles.container}>
       <TouchableOpacity onPress={(_) => {
         const email = props.email;
-        const pass = props.password;
-
+        const password = props.password;
       }}>
         <View style={styles.button}>
           <Text style={styles.buttonText}>
@@ -26,3 +25,4 @@ function LoginButton(props: LoginProps): React.JSX.Element {
 }
 
 export default LoginButton;
+

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   inputControl: {
     height: 44,
     backgroundColor: '#000',
@@ -24,6 +24,3 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
 });
-
-export default styles;
-
