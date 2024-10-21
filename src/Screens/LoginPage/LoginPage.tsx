@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './styles';
+import React, { useState } from 'react';
+import styles from './LoginPage.styles';
 import {
   View,
   Image,
@@ -9,6 +9,10 @@ import InputForm from '../../Components/TextInput';
 import LoginButton from '../../Components/LoginButton';
 
 function LoginPage(): React.JSX.Element {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -24,8 +28,8 @@ function LoginPage(): React.JSX.Element {
       </View>
 
       <View style={styles.form}>
-        <InputForm />
-        <LoginButton />
+        <InputForm form={form} setForm={setForm} />
+        <LoginButton email={form.email} password={form.password} />
       </View>
     </View>
   );

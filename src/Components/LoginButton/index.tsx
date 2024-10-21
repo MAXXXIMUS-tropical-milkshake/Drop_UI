@@ -2,16 +2,25 @@ import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import styles from './styles';
 
-function LoginButton(): React.JSX.Element {
+type LoginProps = {
+  email: string,
+  password: string
+};
+
+function LoginButton(props: LoginProps): React.JSX.Element {
   return (
     <View style={styles.container}>
-     <TouchableOpacity>
-       <View style={styles.button}>
-         <Text style={styles.buttonText}>
-           Sign in
-         </Text>
-       </View>
-    </TouchableOpacity>
+      <TouchableOpacity onPress={(_) => {
+        const email = props.email;
+        const pass = props.password;
+
+      }}>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>
+            Sign in
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

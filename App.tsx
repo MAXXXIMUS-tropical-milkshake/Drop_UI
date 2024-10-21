@@ -3,7 +3,7 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
-import LoginPage from './src/Screens/LoginPage';
+import LoginPage from './src/Screens/LoginPage/LoginPage';
 
 function App(): React.JSX.Element {
   return (
