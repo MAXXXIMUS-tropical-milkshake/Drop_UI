@@ -32,10 +32,10 @@ function SignupPage({ navigation }): React.JSX.Element {
 
       <View style={styles.form}>
         <SignupForm form={form} setForm={setForm} />
-        <SignupButton username={form.username} email={form.email} password={form.password} />
+        <SignupButton username={form.username} email={form.email} password={form.password} navigation={navigation}/>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('login')}>
-        <Text style={{color:'#fff'}}>Go to login</Text>
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('login')}>
+        <Text style={styles.loginText}>Already have an account? Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

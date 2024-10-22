@@ -25,12 +25,21 @@ function LoginButton(props: LoginProps): React.JSX.Element {
           }),
         })
         .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
+          if (response.status === 401) {
+            Alert.alert('Wrong email or password');
+            return null;
+          }
+          if (response.status === 400) {
+            Alert.alert('Wrong format of email or password');
+            return null;
+          }
+          if (response.status === 200) {
             return response.json();
-          })
+          }})
           .then(data => {
+            if (data === null) {
+              return null;
+            }
             Alert.alert('Авторизация успешна.');
             AsyncStorage.setItem('accessToken', data.accessToken);
             AsyncStorage.setItem('refreshToken', data.refreshToken);

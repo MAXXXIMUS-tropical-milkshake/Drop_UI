@@ -34,4 +34,11 @@ export default StyleSheet.create({
     flex: 1,
     marginBottom: 24,
   },
+  loginButton: {
+    alignItems: 'center',
+  },
+  loginText: {
+    fontSize: 15,
+    color: '#fff',
+  },
 });

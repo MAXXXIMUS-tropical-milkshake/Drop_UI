@@ -30,10 +30,10 @@ function LoginPage({ navigation }): React.JSX.Element {
 
       <View style={styles.form}>
         <LoginForm form={form} setForm={setForm} />
-        <LoginButton email={form.email} password={form.password} />
+        <LoginButton email={form.email} password={form.password} navigation={navigation}/>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
-        <Text style={{color:'#fff'}}>Go to register</Text>
+      <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.navigate('signup')}>
+        <Text style={styles.signUpText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
     </View>
   );
