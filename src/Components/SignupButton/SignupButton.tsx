@@ -1,25 +1,27 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, Alert } from 'react-native';
-import styles from './LoginButtonStyles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './SignupButtonStyles';
 
-type LoginProps = {
+type SignupProps = {
+  username: string,
   email: string,
   password: string
 };
 
-function LoginButton(props: LoginProps): React.JSX.Element {
+function SignupButton(props: SignupProps): React.JSX.Element {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={(_) => {
+        const username = props.username;
         const email = props.email;
         const password = props.password;
-        fetch('http://10.0.2.2:8080/v1/auth/login', {
+        fetch('http://10.0.2.2:8080/v1/auth/signup', {
           method: 'POST',
           headers: {
              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            username: username,
             email: email,
             password: password,
           }),
@@ -30,10 +32,8 @@ function LoginButton(props: LoginProps): React.JSX.Element {
             }
             return response.json();
           })
-          .then(data => {
-            Alert.alert('Авторизация успешна.');
-            AsyncStorage.setItem('accessToken', data.accessToken);
-            AsyncStorage.setItem('refreshToken', data.refreshToken);
+          .then(() => {
+            Alert.alert('Регистрация успешна.');
           })
           .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -42,7 +42,7 @@ function LoginButton(props: LoginProps): React.JSX.Element {
       }}>
         <View style={styles.button}>
           <Text style={styles.buttonText}>
-            Sign in
+            Sign up
           </Text>
         </View>
       </TouchableOpacity>
@@ -50,5 +50,5 @@ function LoginButton(props: LoginProps): React.JSX.Element {
   );
 }
 
-export default LoginButton;
+export default SignupButton;
 

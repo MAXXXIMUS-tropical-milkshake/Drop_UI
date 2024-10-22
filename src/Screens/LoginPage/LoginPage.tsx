@@ -4,11 +4,12 @@ import {
   View,
   Image,
   Text,
+  TouchableOpacity,
 } from 'react-native';
-import InputForm from '../../Components/InputForm/InputForm';
+import LoginForm from '../../Components/LoginForm/LoginForm';
 import LoginButton from '../../Components/LoginButton/LoginButton';
 
-function LoginPage(): React.JSX.Element {
+function LoginPage({ navigation }): React.JSX.Element {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -28,9 +29,12 @@ function LoginPage(): React.JSX.Element {
       </View>
 
       <View style={styles.form}>
-        <InputForm form={form} setForm={setForm} />
+        <LoginForm form={form} setForm={setForm} />
         <LoginButton email={form.email} password={form.password} />
       </View>
+      <TouchableOpacity onPress={() => navigation.navigate('signup')}>
+        <Text style={{color:'#fff'}}>Go to register</Text>
+      </TouchableOpacity>
     </View>
   );
 }
