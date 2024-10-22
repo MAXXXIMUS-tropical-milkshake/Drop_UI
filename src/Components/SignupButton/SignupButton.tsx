@@ -5,8 +5,8 @@ import styles from './SignupButtonStyles';
 type SignupProps = {
   username: string,
   email: string,
-  password: string
-  navigation,
+  password: string,
+  navigation, 
 };
 
 function SignupButton(props: SignupProps): React.JSX.Element {

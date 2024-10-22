@@ -35,9 +35,17 @@ export default StyleSheet.create({
     marginBottom: 24,
   },
   signUpButton: {
+    position: 'absolute',
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    flex: 1,
   },
   signUpText: {
+    fontWeight: '400',
     fontSize: 15,
     color: '#fff',
   },

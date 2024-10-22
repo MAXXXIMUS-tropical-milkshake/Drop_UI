@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-} from 'react-native';
 import LoginPage from './src/Screens/LoginPage/LoginPage';
 import SignupPage from './src/Screens/SignupPage/SignupPage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -20,12 +16,5 @@ function App(): React.JSX.Element {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0a0a0a',
-  },
-});
 
 export default App;
