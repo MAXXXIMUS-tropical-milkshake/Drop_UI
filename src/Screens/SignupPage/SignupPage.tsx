@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import SignupForm from '../../Components/SignupForm/SignupForm';
 import SignupButton from '../../Components/SignupButton/SignupButton';
+import { PageProp } from '../Common/PageProps';
 
-function SignupPage({ navigation }): React.JSX.Element {
+
+function SignupPage({ navigation }: PageProp): React.JSX.Element {
   const [form, setForm] = useState({
     username: '',
     email: '',

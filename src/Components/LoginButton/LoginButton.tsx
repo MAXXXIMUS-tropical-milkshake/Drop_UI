@@ -2,10 +2,12 @@ import React from 'react';
 import { TouchableOpacity, View, Text, Alert } from 'react-native';
 import styles from './LoginButtonStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
 type LoginProps = {
   email: string,
-  password: string
+  password: string,
+  navigation: NavigationProp<ParamListBase>
 };
 
 function LoginButton(props: LoginProps): React.JSX.Element {
@@ -36,13 +38,13 @@ function LoginButton(props: LoginProps): React.JSX.Element {
           if (response.status === 200) {
             return response.json();
           }})
-          .then(data => {
+          .then(async (data) => {
             if (data === null) {
               return null;
             }
             Alert.alert('Авторизация успешна.');
-            AsyncStorage.setItem('accessToken', data.accessToken);
-            AsyncStorage.setItem('refreshToken', data.refreshToken);
+            await AsyncStorage.setItem('accessToken', data.accessToken);
+            await AsyncStorage.setItem('refreshToken', data.refreshToken);
           })
           .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

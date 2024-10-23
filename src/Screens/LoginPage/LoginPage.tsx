@@ -8,8 +8,10 @@ import {
 } from 'react-native';
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import LoginButton from '../../Components/LoginButton/LoginButton';
+import { PageProp } from '../Common/PageProps';
 
-function LoginPage({ navigation }): React.JSX.Element {
+
+function LoginPage({ navigation }: PageProp): React.JSX.Element {
   const [form, setForm] = useState({
     email: '',
     password: '',
