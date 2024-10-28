@@ -1,18 +1,19 @@
 import React from 'react';
 import styles from './LoginFormStyles';
-import { TextInput, View, Text } from 'react-native';
-
+import {TextInput, View, Text} from 'react-native';
 
 type LoginFormProps = {
   form: {
-    email: string,
-    password: string
-  }
-  setForm: React.Dispatch<React.SetStateAction<{
     email: string;
     password: string;
-  }>>
-}
+  };
+  setForm: React.Dispatch<
+    React.SetStateAction<{
+      email: string;
+      password: string;
+    }>
+  >;
+};
 
 function LoginForm(props: LoginFormProps): React.JSX.Element {
   return (
@@ -27,7 +28,9 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           placeholderTextColor="#6b7280"
           style={styles.inputControl}
           value={props.form.email}
-          onChangeText={(email: string) => props.setForm({ ...props.form, email })}
+          onChangeText={(email: string) =>
+            props.setForm({...props.form, email})
+          }
         />
       </View>
       <View style={styles.input}>
@@ -38,7 +41,9 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           placeholderTextColor="#6b7280"
           style={styles.inputControl}
           value={props.form.password}
-          onChangeText={(password: string) => props.setForm({ ...props.form, password })}
+          onChangeText={(password: string) =>
+            props.setForm({...props.form, password})
+          }
         />
       </View>
     </View>
@@ -46,4 +51,3 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
 }
 
 export default LoginForm;
-

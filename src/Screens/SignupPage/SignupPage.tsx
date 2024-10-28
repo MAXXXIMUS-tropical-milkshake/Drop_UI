@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styles from './SignupPageStyles';
-import {
-  View,
-  Image,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Image, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import SignupForm from '../../Components/SignupForm/SignupForm';
 import SignupButton from '../../Components/SignupButton/SignupButton';
-import { PageProp } from '../Common/PageProps';
+import {PageProp} from '../Common/PageProps';
 
-
-function SignupPage({ navigation }: PageProp): React.JSX.Element {
+function SignupPage({navigation}: PageProp): React.JSX.Element {
   const [form, setForm] = useState({
     username: '',
     email: '',
@@ -24,19 +17,25 @@ function SignupPage({ navigation }: PageProp): React.JSX.Element {
         <Image
           source={require('../../../assets/droplogo.png')}
           style={styles.headerImage}
-          alt="Logo" />
+          alt="Logo"
+        />
         <Text style={styles.title}>
-          Sign up to <Text style={styles.titleDrop}>
-            Drop
-          </Text>
+          Sign up to <Text style={styles.titleDrop}>Drop</Text>
         </Text>
       </View>
 
       <View style={styles.form}>
         <SignupForm form={form} setForm={setForm} />
-        <SignupButton username={form.username} email={form.email} password={form.password} navigation={navigation}/>
+        <SignupButton
+          username={form.username}
+          email={form.email}
+          password={form.password}
+          navigation={navigation}
+        />
       </View>
-      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('login')}>
+      <TouchableOpacity
+        style={styles.loginButton}
+        onPress={() => navigation.navigate('login')}>
         <Text style={styles.loginText}>Already have an account? Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -44,4 +43,3 @@ function SignupPage({ navigation }: PageProp): React.JSX.Element {
 }
 
 export default SignupPage;
-
