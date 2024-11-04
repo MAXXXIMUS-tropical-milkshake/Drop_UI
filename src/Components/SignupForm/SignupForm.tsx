@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './SignupFormStyles';
-import {TextInput, View, Text} from 'react-native';
+import { TextInput, View, Text, Platform } from 'react-native';
+import ThemeContext from '../../Common/ThemeContext';
 
 type SignupFormProps = {
   form: {
@@ -18,6 +19,7 @@ type SignupFormProps = {
 };
 
 function SignupForm(props: SignupFormProps): React.JSX.Element {
+  const {appTheme, setAppTheme} = useContext(ThemeContext);
   return (
     <View>
       <View style={styles.input}>
@@ -27,10 +29,10 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           autoCorrect={false}
           placeholder="user123"
           placeholderTextColor="#6b7280"
-          style={styles.inputControl}
+          style={styles.inputControlNonWeb}
           value={props.form.username}
           onChangeText={(username: string) =>
-            props.setForm({...props.form, username})
+            props.setForm({ ...props.form, username })
           }
         />
       </View>
@@ -42,10 +44,10 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           keyboardType="email-address"
           placeholder="qwerty@example.com"
           placeholderTextColor="#6b7280"
-          style={styles.inputControl}
+          style={Platform.OS === 'web' && appTheme == 'light' ? styles.inputControlWeb : styles.inputControlNonWeb}
           value={props.form.email}
           onChangeText={(email: string) =>
-            props.setForm({...props.form, email})
+            props.setForm({ ...props.form, email })
           }
         />
       </View>
@@ -55,10 +57,10 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           secureTextEntry
           placeholder="*********"
           placeholderTextColor="#6b7280"
-          style={styles.inputControl}
+          style={styles.inputControlNonWeb}
           value={props.form.password}
           onChangeText={(password: string) =>
-            props.setForm({...props.form, password})
+            props.setForm({ ...props.form, password })
           }
         />
       </View>

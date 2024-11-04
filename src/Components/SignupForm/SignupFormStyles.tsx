@@ -1,8 +1,22 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  inputControl: {
+  inputControlNonWeb: {
     height: 44,
+    backgroundColor: '#000',
+    color: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#30303d',
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  inputControlWeb: {
+    height: 44,
+    margin: 'auto',
+    width: '60%',
     backgroundColor: '#000',
     color: '#fff',
     paddingVertical: 10,

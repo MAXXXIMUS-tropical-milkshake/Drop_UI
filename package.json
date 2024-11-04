@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "web": "webpack serve --config webpack.config.js --mode development",
+    "web": "webpack serve --config webpack.config.js --mode development --port 8084",
     "build:web": "webpack --config webpack.config.js --mode production"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "babel-loader": "^9.2.1",
+    "mux.js": "^6.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-native": "0.75.4",
@@ -24,6 +25,7 @@
     "react-native-screens": "^3.34.0",
     "react-native-track-player": "^4.1.1",
     "react-native-web": "^0.19.13",
+    "shaka-player": "^4.11.11",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
