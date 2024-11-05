@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import TrackPlayer from 'react-native-track-player';
-import LoginPage from './src/Screens/LoginPage/LoginPage';
-import SignupPage from './src/Screens/SignupPage/SignupPage';
-import AudioTestPage from './src/Screens/AudioTestPage/AudioTestPage';
+import HomeScreen from './src/Screens/HomeScreen/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator();
+
+const BottomTab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -24,26 +26,85 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="audio">
-        <Stack.Screen
-          name="audio"
-          component={AudioTestPage}
-          options={{ headerShown: false }}
+      <BottomTab.Navigator screenOptions={{
+        tabBarStyle: {backgroundColor: '#000'},
+        headerShown: false,
+        tabBarActiveTintColor: '#fff',
+        }}>
+        <BottomTab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('./assets/Home.png')}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
         />
-        <Stack.Screen
-          name="signup"
-          component={SignupPage}
-          options={{ headerShown: false }}
+        <BottomTab.Screen
+          name="Lenta"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('./assets/Home.png')}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
         />
-        <Stack.Screen
-          name="login"
-          component={LoginPage}
-          options={{ headerShown: false }}
+        <BottomTab.Screen
+          name="Search"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('./assets/Home.png')}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
         />
-      </Stack.Navigator>
+        <BottomTab.Screen
+          name="Profile"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('./assets/Home.png')}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+      </BottomTab.Navigator>
     </NavigationContainer>
   );
 }
 
+const styles = StyleSheet.create({
+  bottomTabIcon: {
+    width: 20,
+    height: 20,
+    tintColor: 'grey',
+  },
+  bottomTabIconFocused: {
+    tintColor: '#fff',
+  },
+});
 export default App;
 
