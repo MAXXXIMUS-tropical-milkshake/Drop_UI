@@ -26,12 +26,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    position: 'static',
-    alignItems: 'center',
-    alignContent: 'center',
   },
   button: {
-    margin: 50,
     padding: 10,
     backgroundColor: '#ccc',
     borderRadius: 5,
