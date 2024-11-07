@@ -5,7 +5,6 @@ import SignupPage from './src/Screens/SignupPage/SignupPage';
 import AudioTestPage from './src/Screens/AudioTestPage/AudioTestPage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
-import ThemeContext from './src/Common/ThemeContext';
 import { setupPlayer } from './src/Services/StreamPlayer';
 
 const Stack = createNativeStackNavigator();

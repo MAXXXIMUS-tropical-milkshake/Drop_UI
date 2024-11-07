@@ -1,10 +1,15 @@
-import TrackPlayer, { Track } from "react-native-track-player";
+import { Platform } from "react-native";
+import TrackPlayer from "react-native-track-player";
 
 export const setupPlayer = async () => {
+    if (Platform.OS == 'web') {
+        console.log("using web, no setup");
+        return;
+    }
     try {
-        await TrackPlayer.setupPlayer();
-        await TrackPlayer.setVolume(0.1);
-        await prefetchTracks();
+        TrackPlayer.setupPlayer();
+        TrackPlayer.setVolume(0.1);
+        prefetchTracks();
         console.log('Player setup successful');
     } catch (error) {
         console.error('Error setting up player:', error);
@@ -24,15 +29,15 @@ type TrackResponse = {
 
 export const pullTrack = async () => {
     await fetch(apiUrl, {
-        headers: {
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q"
-        }
+        // headers: {
+        //     Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.tjVEMiS5O2yNzclwLdaZ-FuzrhyqOT7UwM9Hfc0ZQ8Q"
+        // }
     })
         .then(
             response => {
                 if (response.status == 200) return response.json();
                 return Error(response.status.toString());
-            }).then(async track => await TrackPlayer.add({ url: apiUrl + "/" + track.id }))
+            }).then(async track => await TrackPlayer.add({ url: apiUrl + "/" + track.id, contentType: 'audio/mpeg', artwork: 'none' }))
         .catch(e => console.log(e));
 };
 
@@ -41,7 +46,7 @@ const prefetchTracks = async () => {
     let meta: TrackResponse[] = [];
     // await TrackPlayer.getTrack(await TrackPlayer.getActiveTrackIndex());
     for (let i = 0; i < 3; i++) {
-        pullTrack();
+        await pullTrack();
         console.log("prefetched" + i);
     }
 };
