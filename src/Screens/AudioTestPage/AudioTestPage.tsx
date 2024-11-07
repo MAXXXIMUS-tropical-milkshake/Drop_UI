@@ -1,7 +1,11 @@
 import TrackPlayer, {Track} from 'react-native-track-player';
 import { StyleSheet } from 'react-native';
 import React from 'react';
-import {SafeAreaView, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
+
+const track = {
+  url: 'http://0.0.0.0:8080/v1/audio/1',
+};
 
 function AudioTestPage(): React.JSX.Element {
   const handlePlay = async (item : Track) => {
@@ -10,11 +14,11 @@ function AudioTestPage(): React.JSX.Element {
     await TrackPlayer.play();
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={() => handlePlay(track)}>
         <Text>Кнопка</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -22,9 +26,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    position: 'static',
     alignItems: 'center',
+    alignContent: 'center',
   },
   button: {
+    margin: 50,
     padding: 10,
     backgroundColor: '#ccc',
     borderRadius: 5,
