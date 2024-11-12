@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
-import styles from './SignupPageStyles';
-import {View, Image, Text, SafeAreaView, TouchableOpacity} from 'react-native';
-import SignupForm from '../../Components/SignupForm/SignupForm';
-import SignupButton from '../../Components/SignupButton/SignupButton';
-import {PageProp} from '../Common/PageProps';
+import React, { useState } from "react"
+import styles from "./SignupPageStyles"
+import { View, Image, Text, SafeAreaView, TouchableOpacity } from "react-native"
+import SignupForm from "../../Components/SignupForm/SignupForm"
+import SignupButton from "../../Components/SignupButton/SignupButton"
+import { PageProp } from "../Common/PageProps"
 
-function SignupPage({navigation}: PageProp): React.JSX.Element {
+function SignupPage({ navigation }: PageProp): React.JSX.Element {
   const [form, setForm] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+    username: "",
+    email: "",
+    password: "",
+    nickname: "",
+    first_name: "",
+    last_name: "",
+  })
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('../../../assets/droplogo.png')}
+          source={require("../../../assets/droplogo.png")}
           style={styles.headerImage}
           alt="Logo"
         />
@@ -30,16 +33,20 @@ function SignupPage({navigation}: PageProp): React.JSX.Element {
           username={form.username}
           email={form.email}
           password={form.password}
+          first_name={form.first_name}
+          last_name={form.last_name}
+          nickname={form.nickname}
           navigation={navigation}
         />
       </View>
       <TouchableOpacity
         style={styles.loginButton}
-        onPress={() => navigation.navigate('login')}>
+        onPress={() => navigation.navigate("login")}
+      >
         <Text style={styles.loginText}>Already have an account? Log in</Text>
       </TouchableOpacity>
     </SafeAreaView>
-  );
+  )
 }
 
-export default SignupPage;
+export default SignupPage

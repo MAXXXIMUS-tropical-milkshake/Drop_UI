@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
-import styles from './LoginPageStyles';
-import {View, SafeAreaView, Image, Text, TouchableOpacity} from 'react-native';
-import LoginForm from '../../Components/LoginForm/LoginForm';
-import LoginButton from '../../Components/LoginButton/LoginButton';
-import {PageProp} from '../Common/PageProps';
+import React, { useState } from "react"
+import styles from "./LoginPageStyles"
+import { View, SafeAreaView, Image, Text, TouchableOpacity } from "react-native"
+import LoginForm from "../../Components/LoginForm/LoginForm"
+import LoginButton from "../../Components/LoginButton/LoginButton"
+import { PageProp } from "../Common/PageProps"
 
-function LoginPage({navigation}: PageProp): React.JSX.Element {
+function LoginPage({ navigation }: PageProp): React.JSX.Element {
   const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
+    email: "",
+    password: "",
+  })
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require('../../../assets/droplogo.png')}
+          source={require("../../../assets/droplogo.png")}
           style={styles.headerImage}
           alt="Logo"
         />
@@ -33,12 +33,12 @@ function LoginPage({navigation}: PageProp): React.JSX.Element {
       </View>
       <TouchableOpacity
         style={styles.signUpButton}
-        onPress={() => navigation.navigate('signup')}>
+        onPress={() => navigation.navigate("signup")}
+      >
         <Text style={styles.signUpText}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
     </SafeAreaView>
-  );
+  )
 }
 
-export default LoginPage;
-
+export default LoginPage

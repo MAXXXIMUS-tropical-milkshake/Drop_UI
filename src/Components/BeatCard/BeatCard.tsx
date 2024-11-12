@@ -1,10 +1,10 @@
-import React from 'react';
-import { Track } from 'react-native-track-player';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { Track } from "react-native-track-player"
+import { StyleSheet, Text, View } from "react-native"
 
-function BeatCard({data}): React.JSX.Element {
-  const track: Track = data;
-  return (<View/>);
+function BeatCard({ data }): React.JSX.Element {
+  const track: Track = data
+  return <View />
 }
 
-export default BeatCard;
+export default BeatCard

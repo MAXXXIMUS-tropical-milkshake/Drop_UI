@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import TrackPlayer from 'react-native-track-player';
 import HomeScreen from './src/Screens/HomeScreen/HomeScreen';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Image, SafeAreaView, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import AudioTestPage from './src/Screens/AudioTestPage/AudioTestPage';
-
-const Stack = createNativeStackNavigator();
+import LoginPage from './src/Screens/LoginPage/LoginPage';
+import SignupPage from './src/Screens/SignupPage/SignupPage';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -26,8 +25,7 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
+    <NavigationContainer>
       <BottomTab.Navigator screenOptions={{
         tabBarStyle: {backgroundColor: '#000'},
         headerShown: false,
@@ -49,12 +47,12 @@ function App(): React.JSX.Element {
           }}
         />
         <BottomTab.Screen
-          name="Lenta"
+          name="Drop"
           component={AudioTestPage}
           options={{
             tabBarIcon: ({focused}) => (
               <Image
-                source={require('./assets/Home.png')}
+                source={require('./assets/Drop.png')}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -64,12 +62,12 @@ function App(): React.JSX.Element {
           }}
         />
         <BottomTab.Screen
-          name="Search"
-          component={HomeScreen}
+          name="Register"
+          component={SignupPage}
           options={{
             tabBarIcon: ({focused}) => (
               <Image
-                source={require('./assets/Home.png')}
+                source={require('./assets/Search.png')}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -79,12 +77,12 @@ function App(): React.JSX.Element {
           }}
         />
         <BottomTab.Screen
-          name="Profile"
-          component={HomeScreen}
+          name="Login"
+          component={LoginPage}
           options={{
             tabBarIcon: ({focused}) => (
               <Image
-                source={require('./assets/Home.png')}
+                source={require('./assets/User.png')}
                 style={[
                   styles.bottomTabIcon,
                   focused && styles.bottomTabIconFocused,
@@ -94,9 +92,7 @@ function App(): React.JSX.Element {
           }}
         />
       </BottomTab.Navigator>
-    </NavigationContainer>
-
-    </View>
+  </NavigationContainer>
   );
 }
 
@@ -109,11 +105,7 @@ const styles = StyleSheet.create({
   bottomTabIconFocused: {
     tintColor: '#fff',
   },
-  container: {
-    marginBottom: 'auto',
-    alignSelf: 'flex-end',
-    flexDirection: 'column',
-  },
 });
+
 export default App;
 

@@ -1,19 +1,19 @@
-import React from 'react';
-import styles from './LoginFormStyles';
-import {TextInput, View, Text} from 'react-native';
+import React from "react"
+import styles from "./LoginFormStyles"
+import { TextInput, View, Text } from "react-native"
 
 type LoginFormProps = {
   form: {
-    email: string;
-    password: string;
-  };
+    email: string
+    password: string
+  }
   setForm: React.Dispatch<
     React.SetStateAction<{
-      email: string;
-      password: string;
+      email: string
+      password: string
     }>
-  >;
-};
+  >
+}
 
 function LoginForm(props: LoginFormProps): React.JSX.Element {
   return (
@@ -29,7 +29,7 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           style={styles.inputControl}
           value={props.form.email}
           onChangeText={(email: string) =>
-            props.setForm({...props.form, email})
+            props.setForm({ ...props.form, email })
           }
         />
       </View>
@@ -42,12 +42,12 @@ function LoginForm(props: LoginFormProps): React.JSX.Element {
           style={styles.inputControl}
           value={props.form.password}
           onChangeText={(password: string) =>
-            props.setForm({...props.form, password})
+            props.setForm({ ...props.form, password })
           }
         />
       </View>
     </View>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm

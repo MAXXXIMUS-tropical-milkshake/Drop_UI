@@ -1,37 +1,65 @@
-import TrackPlayer, {Track} from 'react-native-track-player';
-import { StyleSheet } from 'react-native';
-import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import TrackPlayer, { Track } from "react-native-track-player"
+import styles from "./AudioTestPageStyles"
+import React from "react"
+import { View, SafeAreaView, Text, TouchableOpacity } from "react-native"
+import { Platform } from "react-native"
+import { useState } from "react"
+import TrackForm from "../../Components/TrackForm/TrackForm"
 
-const track = {
-  url: 'http://0.0.0.0:8080/v1/audio/1',
-};
+const apiUrl: string =
+  Platform.OS == "web"
+    ? "http://0.0.0.0:9321/v1/audio"
+    : "http://10.0.2.2:9321/v1/audio"
 
 function AudioTestPage(): React.JSX.Element {
-  const handlePlay = async (item : Track) => {
-    console.log(item);
-    await TrackPlayer.add(item);
+  const [playing, setPlaying] = useState(false)
+  const [form, setForm] = useState({
+    id: "",
+  })
+  const addTrack = async (id: string = "-1") => {
+    const track: Track = {
+      url: id == "-1" ? apiUrl : apiUrl + "/" + id + "/stream",
+    }
+    console.log(track)
+    await TrackPlayer.add(track)
+  }
+  const handlePlay = async () => {
+    if (playing) {
+      TrackPlayer.pause();
+      setPlaying(false);
+      return;
+    }
     await TrackPlayer.play();
-  };
+    setPlaying(true);
+  }
+  const skipTrack = async () => {
+    await TrackPlayer.skipToNext();
+  }
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={() => handlePlay(track)}>
-        <Text>Кнопка</Text>
-      </TouchableOpacity>
-    </View>
-  );
+    <SafeAreaView style={styles.container}>
+      <TrackForm form={form} setForm={setForm} />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handlePlay()}
+          >
+            <Text>Play</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => addTrack(form.id)}
+          >
+            <Text>Set track</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => skipTrack()}
+          >
+            <Text>Skip to next track</Text>
+          </TouchableOpacity>
+        </View>
+    </SafeAreaView>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  button: {
-    padding: 10,
-    backgroundColor: '#ccc',
-    borderRadius: 5,
-  },
-});
-
-export default AudioTestPage;
+export default AudioTestPage

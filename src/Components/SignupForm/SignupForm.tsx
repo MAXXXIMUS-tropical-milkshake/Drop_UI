@@ -1,21 +1,27 @@
-import React from 'react';
-import styles from './SignupFormStyles';
-import {TextInput, View, Text} from 'react-native';
+import React from "react"
+import styles from "./SignupFormStyles"
+import { TextInput, View, Text } from "react-native"
 
 type SignupFormProps = {
   form: {
-    username: string;
-    email: string;
-    password: string;
-  };
+    username: string
+    email: string
+    password: string
+    first_name: string
+    last_name: string
+    nickname: string
+  }
   setForm: React.Dispatch<
     React.SetStateAction<{
-      username: string;
-      email: string;
-      password: string;
+      username: string
+      email: string
+      password: string
+      first_name: string
+      last_name: string
+      nickname: string
     }>
-  >;
-};
+  >
+}
 
 function SignupForm(props: SignupFormProps): React.JSX.Element {
   return (
@@ -30,7 +36,7 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           style={styles.inputControl}
           value={props.form.username}
           onChangeText={(username: string) =>
-            props.setForm({...props.form, username})
+            props.setForm({ ...props.form, username })
           }
         />
       </View>
@@ -45,7 +51,46 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           style={styles.inputControl}
           value={props.form.email}
           onChangeText={(email: string) =>
-            props.setForm({...props.form, email})
+            props.setForm({ ...props.form, email })
+          }
+        />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.inputLabel}>First name</Text>
+        <TextInput
+          secureTextEntry
+          placeholder="Maksim"
+          placeholderTextColor="#6b7280"
+          style={styles.inputControl}
+          value={props.form.first_name}
+          onChangeText={(first_name: string) =>
+            props.setForm({ ...props.form, first_name })
+          }
+        />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.inputLabel}>Last name</Text>
+        <TextInput
+          secureTextEntry
+          placeholder="Ivanov"
+          placeholderTextColor="#6b7280"
+          style={styles.inputControl}
+          value={props.form.last_name}
+          onChangeText={(last_name: string) =>
+            props.setForm({ ...props.form, last_name })
+          }
+        />
+      </View>
+      <View style={styles.input}>
+        <Text style={styles.inputLabel}>Nickname</Text>
+        <TextInput
+          secureTextEntry
+          placeholder="Super_max228"
+          placeholderTextColor="#6b7280"
+          style={styles.inputControl}
+          value={props.form.nickname}
+          onChangeText={(nickname: string) =>
+            props.setForm({ ...props.form, nickname })
           }
         />
       </View>
@@ -58,12 +103,12 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
           style={styles.inputControl}
           value={props.form.password}
           onChangeText={(password: string) =>
-            props.setForm({...props.form, password})
+            props.setForm({ ...props.form, password })
           }
         />
       </View>
     </View>
-  );
+  )
 }
 
-export default SignupForm;
+export default SignupForm
