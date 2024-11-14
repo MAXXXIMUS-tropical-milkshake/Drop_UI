@@ -7,6 +7,7 @@ import { Image, StyleSheet } from 'react-native';
 import AudioTestPage from './src/Screens/AudioTestPage/AudioTestPage';
 import LoginPage from './src/Screens/LoginPage/LoginPage';
 import SignupPage from './src/Screens/SignupPage/SignupPage';
+import EmailVerifyPage from './src/Screens/EmailVerifyPage/EmailVerifyPage';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -79,6 +80,21 @@ function App(): React.JSX.Element {
         <BottomTab.Screen
           name="Login"
           component={LoginPage}
+          options={{
+            tabBarIcon: ({focused}) => (
+              <Image
+                source={require('./assets/User.png')}
+                style={[
+                  styles.bottomTabIcon,
+                  focused && styles.bottomTabIconFocused,
+                ]}
+              />
+            ),
+          }}
+        />
+        <BottomTab.Screen
+          name="Email verify"
+          component={EmailVerifyPage}
           options={{
             tabBarIcon: ({focused}) => (
               <Image

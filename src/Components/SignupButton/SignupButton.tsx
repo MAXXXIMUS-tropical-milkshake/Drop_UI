@@ -31,11 +31,11 @@ function SignupButton(props: SignupProps): React.JSX.Element {
             },
             body: JSON.stringify({
               username: username,
-              first_name: first_name,
-              last_name: last_name,
+              firstName: first_name,
+              lastName: last_name,
               email: email,
               password: password,
-              nickname: nickname,
+              pseudonym: nickname,
             }),
           })
             .then((response) => {
@@ -58,7 +58,7 @@ function SignupButton(props: SignupProps): React.JSX.Element {
                 return null
               }
               Alert.alert("Регистрация успешна.")
-              navigation.navigate("login")
+              //navigation.navigate("login")
             })
             .catch((error) => {
               console.error(

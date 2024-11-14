@@ -5,11 +5,12 @@ import { View, SafeAreaView, Text, TouchableOpacity } from "react-native"
 import { Platform } from "react-native"
 import { useState } from "react"
 import TrackForm from "../../Components/TrackForm/TrackForm"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const apiUrl: string =
   Platform.OS == "web"
-    ? "http://0.0.0.0:9321/v1/audio"
-    : "http://10.0.2.2:9321/v1/audio"
+    ? "http://0.0.0.0:9321/v1/"
+    : "http://10.0.2.2:9321/v1/"
 
 function AudioTestPage(): React.JSX.Element {
   const [playing, setPlaying] = useState(false)
@@ -17,11 +18,23 @@ function AudioTestPage(): React.JSX.Element {
     id: "",
   })
   const addTrack = async (id: string = "-1") => {
-    const track: Track = {
-      url: id == "-1" ? apiUrl : apiUrl + "/" + id + "/stream",
+    const token : string = await AsyncStorage.getItem('accessToken') as string;
+    if (id == "-1") {
+      const req = await fetch(apiUrl + "feed/audio", {headers: {
+        'Authorization' : token
+      }});
+      const data = await req.json();
+
+      id = data.id;
     }
-    console.log(track)
-    await TrackPlayer.add(track)
+    const url : string = apiUrl + "audio/" + id + "/stream";
+    const track: Track = {
+      url: url
+    }
+    console.log(url);
+    console.log(id);
+    console.log(await AsyncStorage.getItem('accessToken'));
+    await TrackPlayer.add(track);
   }
   const handlePlay = async () => {
     if (playing) {

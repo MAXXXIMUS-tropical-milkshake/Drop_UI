@@ -58,7 +58,8 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
       <View style={styles.input}>
         <Text style={styles.inputLabel}>First name</Text>
         <TextInput
-          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
           placeholder="Maksim"
           placeholderTextColor="#6b7280"
           style={styles.inputControl}
@@ -71,7 +72,8 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
       <View style={styles.input}>
         <Text style={styles.inputLabel}>Last name</Text>
         <TextInput
-          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
           placeholder="Ivanov"
           placeholderTextColor="#6b7280"
           style={styles.inputControl}
@@ -84,7 +86,8 @@ function SignupForm(props: SignupFormProps): React.JSX.Element {
       <View style={styles.input}>
         <Text style={styles.inputLabel}>Nickname</Text>
         <TextInput
-          secureTextEntry
+          autoCapitalize="none"
+          autoCorrect={false}
           placeholder="Super_max228"
           placeholderTextColor="#6b7280"
           style={styles.inputControl}

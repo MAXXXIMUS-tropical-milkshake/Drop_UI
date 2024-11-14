@@ -12,7 +12,7 @@ export default StyleSheet.create({
     padding: 10,
     margin: 5,
     borderRadius: 5,
-    flex: 1, // Растягиваем кнопки по ширине
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

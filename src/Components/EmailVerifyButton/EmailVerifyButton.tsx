@@ -1,53 +1,44 @@
 import React from "react"
 import { TouchableOpacity, View, Text, Alert } from "react-native"
-import styles from "./LoginButtonStyles"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { NavigationProp, ParamListBase } from "@react-navigation/native"
+import styles from "./EmailVerifyButtonStyles.tsx"
 
-type LoginProps = {
-  email: string
-  password: string
-  navigation: NavigationProp<ParamListBase>
+type VerifyProps = {
+  code: string
 }
 
-function LoginButton(props: LoginProps): React.JSX.Element {
+function EmailVerifyButton(props: VerifyProps): React.JSX.Element {
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
-          const email = props.email
-          const password = props.password
-          fetch("http://10.0.2.2:9431/v1/auth/login", {
+          const code = props.code;
+          fetch("http://10.0.2.2:9431/v1/auth/email/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: email,
-              password: password,
+              code: code,
             }),
           })
             .then((response) => {
               if (response.status === 401) {
                 Alert.alert("Wrong email or password")
-                return null;
+                return null
               }
               if (response.status === 400) {
                 Alert.alert("Wrong format of email or password")
-                return null;
+                return null
               }
               if (response.status === 200) {
-                return response.json();
+                return response.json()
               }
             })
             .then(async (data) => {
               if (data === null) {
-                return null;
+                return null
               }
-              Alert.alert("Авторизация успешна.");
-              await AsyncStorage.setItem("accessToken", data.accessToken);
-              await AsyncStorage.setItem("refreshToken", data.refreshToken);
-              console.log(data.accessToken);
+              Alert.alert("Верификация успешна.")
             })
             .catch((error) => {
               console.error(
@@ -58,11 +49,11 @@ function LoginButton(props: LoginProps): React.JSX.Element {
         }}
       >
         <View style={styles.button}>
-          <Text style={styles.buttonText}>Sign in</Text>
+          <Text style={styles.buttonText}>Verify</Text>
         </View>
       </TouchableOpacity>
     </View>
   )
 }
 
-export default LoginButton
+export default EmailVerifyButton;
