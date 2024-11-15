@@ -6,6 +6,7 @@ import { Platform } from "react-native"
 import { useState } from "react"
 import TrackForm from "../../Components/TrackForm/TrackForm"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import ShareButton from "../../Components/ShareButton/ShareButton"
 
 const apiUrl: string =
   Platform.OS == "web"
@@ -18,14 +19,38 @@ function AudioTestPage(): React.JSX.Element {
     id: "",
   })
   const addTrack = async (id: string = "-1") => {
-    const token : string = await AsyncStorage.getItem('accessToken') as string;
+    let accessToken : string = await AsyncStorage.getItem('accessToken') as string;
     if (id == "-1") {
-      const req = await fetch(apiUrl + "feed/audio", {headers: {
-        'Authorization' : token
+      let req = await fetch(apiUrl + "feed/audio", {
+      headers: {
+        'Authorization' : accessToken
       }});
-      const data = await req.json();
-
-      id = data.id;
+      if (req.status === 401) {
+        const refreshToken = await AsyncStorage.getItem('refreshToken') as string;
+        console.log(refreshToken)
+        fetch("http://10.0.2.2:9431/v1/auth/token/refresh", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ refreshToken : refreshToken })
+        }).then((response) => {
+          console.log(response.status)
+          if (response.status === 200) {
+            return response.json();
+          }
+        }).then((data) => {
+          console.log(data);
+          accessToken = data.accessToken;
+          AsyncStorage.setItem("accessToken", data.accessToken);
+          AsyncStorage.setItem("refreshToken", data.refreshToken);
+        });
+      }
+      console.log(accessToken);
+      req = await fetch(apiUrl + "feed/audio", {headers: {
+        'Authorization' : accessToken
+      }});
+      id = (await req.json()).id;
     }
     const url : string = apiUrl + "audio/" + id + "/stream";
     const track: Track = {
@@ -70,6 +95,7 @@ function AudioTestPage(): React.JSX.Element {
           >
             <Text>Skip to next track</Text>
           </TouchableOpacity>
+          <ShareButton/>
         </View>
     </SafeAreaView>
   )

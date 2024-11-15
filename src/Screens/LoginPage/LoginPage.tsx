@@ -35,7 +35,7 @@ function LoginPage({ navigation }: PageProp): React.JSX.Element {
         style={styles.signUpButton}
         onPress={() => navigation.navigate("signup")}
       >
-        <Text style={styles.signUpText}>Don't have an account? Sign up</Text>
+        <Text style={styles.signUpText}>Don`t have an account? Sign up</Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
